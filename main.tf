@@ -24,6 +24,12 @@ resource "aws_kinesis_firehose_delivery_stream" "firehose-stream-new" {
     //The compression format
     compression_format = "ZIP"
   }
+     
+    kinesis_source_configuration {
+     role_arn   = "${aws_iam_role.firehose-stream-role.arn}"
+    //The ARN of the kinesis stream
+    kinesis_stream_arn = "${aws_kinesis_stream.kineis_stream.arn}"
+  }
 }
 
 
